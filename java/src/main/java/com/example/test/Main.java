@@ -14,7 +14,7 @@ import javax.crypto.Cipher;
 public class Main {
 
     public static PrivateKey loadPrivateKey(String resourcePath) throws Exception {
-        try (InputStream is = RsaKeyLoader.class.getClassLoader().getResourceAsStream(resourcePath)) {
+        try (InputStream is = Main.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (is == null) {
                 throw new IllegalArgumentException("Resource not found: " + resourcePath);
             }
@@ -32,7 +32,7 @@ public class Main {
     }
 
     public static PublicKey loadPublicKey(String resourcePath) throws Exception {
-        try (InputStream is = RsaKeyLoader.class.getClassLoader().getResourceAsStream(resourcePath)) {
+        try (InputStream is = Main.class.getClassLoader().getResourceAsStream(resourcePath)) {
             if (is == null) {
                 throw new IllegalArgumentException("Resource not found: " + resourcePath);
             }
