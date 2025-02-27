@@ -12,6 +12,7 @@ public class Program
         var rsaPrivate = new RSACryptoServiceProvider();
 
         rsaPublic.ImportFromPem(publicKeyPem.ToCharArray());
+        rsaPrivate.ImportFromPem(privateKeyPem.ToCharArray());
 
         // 加密
         string text = "Hello, RSA!";
@@ -26,13 +27,9 @@ public class Program
         // string base64EncryptedData = "V0lDp1+uBm682YPna146AJ7VD7GfPryJr+QN1FRfRXy4iKQl/JmecbX1XpaYsQuxQ/52XiKRtvXbqfCfzhN8TUCY6rjzCFmKXuP5GcXQszzVBHXwIR/szvMblD60OHU/F35QEBpCB9HZTh7gNFRe7juJmh4ppeyQa3WY0VMK6bEC1L3r52sDAZUZukdtx3Xt3ZTuodL+WfYlr3nimvlrQMjlda3GLZ9JW8f+XlaWEpveoNBoXgHltYGQ4QRYTeYdWxJTOUBlVOi/meUSjGDaqswZlWRST4z9s9EdIcYc+PtNj2Fmov5GG9Fnrl5QbKjRQsU/Nz68ucIGSHm53SgFjQ==";
         // byte[] encryptedData = Convert.FromBase64String(base64EncryptedData);
 
-
         // 解密
-        rsaPrivate.ImportFromPem(privateKeyPem.ToCharArray());
         byte[] decryptedData = rsaPrivate.Decrypt(encryptedData, RSAEncryptionPadding.Pkcs1);
         string decryptedText = Encoding.UTF8.GetString(decryptedData);
         Console.WriteLine($"Decrypted text: {decryptedText}");
-
-
     }
 }
