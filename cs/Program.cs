@@ -7,6 +7,7 @@ public class Program
     {
         string publicKeyPem = File.ReadAllText("public_key.pem");
         string privateKeyPem = File.ReadAllText("private_key.pem");
+
         var rsaPublic = new RSACryptoServiceProvider();
         var rsaPrivate = new RSACryptoServiceProvider();
 
@@ -16,6 +17,8 @@ public class Program
         string text = "Hello, RSA!";
         byte[] data = Encoding.UTF8.GetBytes(text);
         byte[] encryptedData = rsaPublic.Encrypt(data, RSAEncryptionPadding.Pkcs1);
+        // 也不是非要用公钥加密
+        // byte[] encryptedData = rsaPrivate.Encrypt(data, RSAEncryptionPadding.Pkcs1);
         string base64EncryptedData = Convert.ToBase64String(encryptedData);
         Console.WriteLine($"Encrypted data: {base64EncryptedData}");
 
